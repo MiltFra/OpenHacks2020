@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 public class Enigma {
     private Encryptor[] rotors;
     private Encryptor reflector;

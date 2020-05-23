@@ -1,4 +1,3 @@
-package EnigmaVisualisation;
 
 public class Rotor implements Encryptor {
     public static int MAP_LENGTH = 26;

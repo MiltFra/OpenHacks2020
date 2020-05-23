@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 public class Letter {
     public static final int MIN_VALUE = 0;
     public static final int MAX_VALUE = 25;
@@ -22,11 +20,11 @@ public class Letter {
     public Letter unshift(Letter position) {
         return new Letter((this.value - position.value + MAX_VALUE + 1) % (MAX_VALUE + 1));
     }
-    
+
     public Letter next() {
         if (this.value == MAX_VALUE) {
             return new Letter(MIN_VALUE);
         }
-        return new Letter(this.value+1);
+        return new Letter(this.value + 1);
     }
 }

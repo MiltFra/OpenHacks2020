@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 public class Mapping {
     public static int SIZE = 26;
     private final Letter[] fw_map = new Letter[SIZE];

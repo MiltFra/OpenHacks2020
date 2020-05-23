@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 public class Reflector implements Encryptor {
     public static int MAP_LENGTH = 26;
     private static Letter POS = new Letter(0);
