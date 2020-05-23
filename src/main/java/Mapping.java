@@ -25,11 +25,30 @@ public class Mapping {
         }
     }
 
-    public Letter forward(Letter position, Letter in) {
+    public Letter forwardPos(Letter position, Letter in) {
         return this.fw_map[in.shift(position).value].unshift(position);
     }
 
-    public Letter backward(Letter position, Letter in) {
+    public Letter backwardPos(Letter position, Letter in) {
         return this.bw_map[in.shift(position).value].unshift(position);
+    }
+
+    public Letter forward(Letter in) {
+        return this.fw_map[in.value];
+    }
+
+    public Letter backward(Letter in) {
+        return this.bw_map[in.value];
+    }
+
+    public static Mapping fromString(String str) {
+        if (str.length() != SIZE) {
+            throw new IllegalArgumentException();
+        }
+        Letter[] letters = new Letter[26];
+        for (int j = 0; j < 26; j++) {
+            letters[j] = new Letter(str.charAt(j));
+        }
+        return new Mapping(letters);
     }
 }
