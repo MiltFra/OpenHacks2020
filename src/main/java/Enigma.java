@@ -21,4 +21,12 @@ public class Enigma {
         in = this.translator.forward(in);
         return in;
     }
+
+    public Letter[] getTopPositions() {
+        var positions = new Letter[this.rotors.length];
+        for (int i = 0; i < positions.length; i++) {
+            positions[i] = this.rotors[i].getPosition();
+        }
+        return positions;
+    }
 }

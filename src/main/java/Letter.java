@@ -33,4 +33,9 @@ public class Letter {
         }
         return new Letter(this.value + 1);
     }
+
+    @Override
+    public String toString() {
+        return Character.toString((char) this.value + 'A');
+    }
 }

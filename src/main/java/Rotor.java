@@ -31,4 +31,8 @@ public class Rotor implements Encryptor {
     public Letter backward(Letter in) {
         return this.mapping.backwardPos(this.position, in);
     }
+
+    public Letter getPosition() {
+        return this.position;
+    }
 }
