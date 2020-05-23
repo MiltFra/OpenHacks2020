@@ -15,8 +15,8 @@ public class Enigma {
             in = this.rotors[i].forward(in);
         }
         in = this.reflector.forward(in);
-        for (int i = this.rotors.length - 1; i >= 0; i--) {
-            in = this.rotors[i].backward(in);
+        for (int i = this.rotors.length; i > 1; i--) {
+            in = this.rotors[i-1].backward(in);
         }
         in = this.translator.forward(in);
         return in;
@@ -28,5 +28,13 @@ public class Enigma {
             positions[i] = this.rotors[i].getPosition();
         }
         return positions;
+    }
+
+    public String processString(String in) {
+        var letters = Letter.arrayFromString(in);
+        for (int i = 0; i < letters.length; i++) {
+            letters[i] = this.process(letters[i]);
+        }
+        return Letter.arrayToString(letters);
     }
 }

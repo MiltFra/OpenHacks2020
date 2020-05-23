@@ -45,10 +45,6 @@ public class Mapping {
         if (str.length() != SIZE) {
             throw new IllegalArgumentException();
         }
-        Letter[] letters = new Letter[26];
-        for (int j = 0; j < 26; j++) {
-            letters[j] = new Letter(str.charAt(j));
-        }
-        return new Mapping(letters);
+        return new Mapping(Letter.arrayFromString(str));
     }
 }

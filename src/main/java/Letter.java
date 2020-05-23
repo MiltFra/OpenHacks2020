@@ -36,6 +36,26 @@ public class Letter {
 
     @Override
     public String toString() {
-        return Character.toString((char) this.value + 'A');
+        return Character.toString(this.toChar());
+    }
+
+    public char toChar() {
+        return (char) (this.value + 'A');
+    }
+
+    public static Letter[] arrayFromString(String in) {
+        Letter[] letters = new Letter[in.length()];
+        for (int j = 0; j < in.length(); j++) {
+            letters[j] = new Letter(in.charAt(j));
+        }
+        return letters;
+    }
+
+    public static String arrayToString(Letter[] in) {
+        var chars = new char[in.length];
+        for (int i = 0; i < in.length; i++) {
+            chars[i] = in[i].toChar();
+        }
+        return new String(chars);
     }
 }
