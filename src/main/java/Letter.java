@@ -28,10 +28,10 @@ public class Letter {
     }
 
     public Letter next() {
-        if (this.value == MAX_VALUE) {
-            return new Letter(MIN_VALUE);
+        if (this.value == 0) {
+            return new Letter(MAX_VALUE);
         }
-        return new Letter(this.value + 1);
+        return new Letter(this.value - 1);
     }
 
     @Override

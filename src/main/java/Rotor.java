@@ -17,7 +17,7 @@ public class Rotor implements Encryptor {
     }
 
     public void step() {
-        this.position = this.position.shift(new Letter(1));
+        this.position = this.position.next();
     }
 
     public Letter forward(Letter in) {

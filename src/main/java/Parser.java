@@ -30,7 +30,7 @@ public class Parser {
             br.close();
             return new Enigma(rotors, translator, reflector);
         } catch (Exception e) {
-            System.err.println("An error occurred reading the given TOML file.");
+            System.err.println("An error occurred reading the given file.");
             e.printStackTrace(System.err);
         }
         // throw new Exception("The parser has not yet been fully implemented.");
