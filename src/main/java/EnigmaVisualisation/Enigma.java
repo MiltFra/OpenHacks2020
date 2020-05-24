@@ -19,4 +19,12 @@ public class Enigma {
         }
         return in;
     }
+
+    public Encryptor[] getRotors() {
+        return rotors.clone();
+    }
+
+    public Encryptor getReflector() {
+        return reflector;
+    }
 }
