@@ -1,28 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class RotorPanel extends JPanel {
-    RotorPanel() {
-        new JPanel();
-        setLayout(new FlowLayout(FlowLayout.CENTER, Utils.padding, Utils.padding));
-        setAlignmentY(JPanel.CENTER_ALIGNMENT);
-        setBackground(Color.white);
-        //setBounds(50, 50, 300, 100);
+public class RotorPanel extends JLabel {
 
-        JLabel rotor1 = new JLabel("1");
-        Utils.setFixSize(rotor1, Utils.rotorDim, Utils.rotorDim);
-        rotor1.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+    //private static String letter;
 
-        JLabel rotor2 = new JLabel("2");
-        Utils.setFixSize(rotor2, Utils.rotorDim, Utils.rotorDim);
-        rotor2.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+    public RotorPanel(Letter letter) {
 
-        JLabel rotor3 = new JLabel("3");
-        Utils.setFixSize(rotor3, Utils.rotorDim, Utils.rotorDim);
-        rotor3.setBorder(BorderFactory.createLineBorder(Color.black, 5));
+        new JLabel();
+        Utils.setFixSize(this, Utils.rotorDim, Utils.rotorDim);
+        setBorder(BorderFactory.createLineBorder(Color.black, 5));
+        setText(letter.toString());
 
-        add(rotor1);
-        add(rotor2);
-        add(rotor3);
+        //this.letter = this.getText();
     }
+
+    /*public void setLetter(Letter letter) {
+        //RotorPanel.letter = letter.toString();
+        this.setText(letter.toString());
+
+    }*/
+
 }

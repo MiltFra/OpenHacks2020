@@ -1,12 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class InputPanel extends JPanel {
     private final JTextField input;
 
     private JLabel unencryptedLetter;
+    private String text;
+    private boolean start = false;
 
-    InputPanel() {
+    public InputPanel() {
         new JPanel();
         setLayout(new FlowLayout(FlowLayout.LEFT, Utils.padding, Utils.padding));
         setAlignmentY(JPanel.BOTTOM_ALIGNMENT);
@@ -24,6 +29,14 @@ public class InputPanel extends JPanel {
 
         JButton startButton = new JButton("START");
         Utils.setFixSize(startButton, 100, 20);
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                text = input.getText();
+                start = true;
+                System.out.println("Input " + text);
+            }
+        });
 
         JLabel letterText = new JLabel("UNENCRYPTED LETTER");
         unencryptedLetter = new JLabel("");
@@ -40,8 +53,16 @@ public class InputPanel extends JPanel {
 
     }
 
+    public boolean isStart() {
+        return start;
+    }
 
     public String getInputText() {
-        return input.getText();
+        Objects.requireNonNull(text, "ERROR: inputText must not be null before start of encryption");
+        return text;
+    }
+
+    public void setUnencryptedLetter(String l) {
+        this.unencryptedLetter.setText(l);
     }
 }
