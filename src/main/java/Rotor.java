@@ -1,5 +1,5 @@
 
-public class Rotor implements Encryptor {
+public class Rotor {
     public static int MAP_LENGTH = 26;
     private Letter position;
     private Mapping mapping;
