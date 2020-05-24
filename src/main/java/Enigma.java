@@ -93,4 +93,6 @@ public class Enigma {
     mappings[mappings.length - 1] = this.reflector;
     return mappings;
   }
+
+  public int getRotorCount() { return this.rotors.length; }
 }

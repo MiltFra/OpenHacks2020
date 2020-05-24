@@ -40,7 +40,10 @@ public class Rotor {
   /**
    * Turns the rotor by a single step.
    */
-  public void step() { this.position = this.position.next(); }
+  public void step() {
+    this.position = this.position.next();
+    System.err.println("New position: " + this.position);
+  }
 
   /**
    * Passes a Letter from the front through the rotor, thus triggering rotating
@@ -52,6 +55,8 @@ public class Rotor {
     this.step_count = this.step_count.next();
     if (this.step_on[this.step_count.value]) {
       this.step();
+    } else {
+        System.err.println(step_count);
     }
     return this.mapping.processPos(this.position, in);
   }

@@ -74,7 +74,7 @@ public class Letter {
    * @return The new letter.
    */
   public Letter next() {
-    if (this.value == 0) {
+    if (this.value == MIN_VALUE) {
       return new Letter(MAX_VALUE);
     }
     return new Letter(this.value - 1);

@@ -14,12 +14,14 @@ public class Mapping {
    * @param values An array of values that corresponds to a valid mapping.
    */
   public Mapping(final Letter[] values) {
+    java.util.Objects.requireNonNull(values);
     if (values.length != SIZE) {
       throw new IllegalArgumentException(
           "Given letter array has invalid size.");
     }
     final boolean[] targetSet = new boolean[SIZE];
     for (final Letter v : values) {
+      java.util.Objects.requireNonNull(v);
       targetSet[v.value] = true;
       if (values[values[v.value].value].value !=
           v.value) { // Nice code... TODO: fix this
@@ -77,5 +79,9 @@ public class Mapping {
       throw new IllegalArgumentException();
     }
     return new Mapping(Letter.arrayFromString(str));
+  }
+
+  public static Mapping id() {
+    return fromString("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
   }
 }
