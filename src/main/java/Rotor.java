@@ -1,42 +1,80 @@
-
+/**
+ * A mapper with internal state. Depending on the configuration, each input
+ * might cause rotation and therefore a change in behaviour.
+ */
 public class Rotor {
-    public static int MAP_LENGTH = 26;
-    private Letter position;
-    private Mapping mapping;
-    private boolean[] step_on;
-    private Letter step_count;
 
-    public Rotor(Mapping mapping, Letter[] step_on) throws IllegalArgumentException {
-        this.mapping = mapping;
-        this.position = new Letter(0);
-        this.step_on = new boolean[MAP_LENGTH];
-        for (Letter l : step_on) {
-            this.step_on[l.value] = true;
-        }
-        this.step_count = new Letter(0);
-    }
+  /**
+   * The current position of the rotor, i.e. the letter 'A' gets interpreted
+   * as.
+   */
+  private Letter position;
 
-    public void step() {
-        this.position = this.position.next();
-    }
+  /** The wiring of the rotor and the resulting mapping of characters. */
+  private Mapping mapping;
 
-    public Letter forward(Letter in) {
-        this.step_count = this.step_count.next();
-        if (this.step_on[this.step_count.value]) {
-            this.step();
-        }
-        return this.mapping.processPos(this.position, in);
-    }
+  /**
+   * Whether or not a rotation occurs if the current letter is at the top of
+   * the rotor.
+   */
+  private boolean[] step_on;
 
-    public Letter backward(Letter in) {
-        return this.mapping.processPos(this.position, in);
-    }
+  /** How many steps have been done so far. (i.e. forward passes) */
+  private Letter step_count;
 
-    public Letter getPosition() {
-        return this.position;
+  /**
+   * Given a mapping and a valid step_on array, this constructs a Rotor.
+   * @param mapping A valid mapping.
+   * @param step_on Array of Letters steps are supposed to occur on.
+   */
+  public Rotor(Mapping mapping, Letter[] step_on) {
+    this.mapping = mapping;
+    this.position = Letter.zero;
+    this.step_on = new boolean[Mapping.SIZE];
+    for (Letter l : step_on) {
+      this.step_on[l.value] = true;
     }
+    this.step_count = Letter.zero;
+  }
 
-    public Mapping getMapping() {
-        return this.mapping;
+  /**
+   * Turns the rotor by a single step.
+   */
+  public void step() { this.position = this.position.next(); }
+
+  /**
+   * Passes a Letter from the front through the rotor, thus triggering rotating
+   * mechanisms.
+   * @param in The letter to be processed.
+   * @return The resulting letter.
+   */
+  public Letter forward(Letter in) {
+    this.step_count = this.step_count.next();
+    if (this.step_on[this.step_count.value]) {
+      this.step();
     }
+    return this.mapping.processPos(this.position, in);
+  }
+
+  /**
+   * Passes a Letter from the back through the rotor, thus not triggering any
+   * rotating mechanisms.
+   * @param in The letter to be processed.
+   * @return The resulting letter.
+   */
+  public Letter backward(Letter in) {
+    return this.mapping.processPos(this.position, in);
+  }
+
+  /**
+   * The current rotor position.
+   * @return The position as a Letter.
+   */
+  public Letter getPosition() { return this.position; }
+
+  /**
+   * The mapping of this rotor.
+   * @return The mapping.
+   */
+  public Mapping getMapping() { return this.mapping; }
 }
