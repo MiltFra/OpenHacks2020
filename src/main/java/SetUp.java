@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 import javax.swing.*;
 
 

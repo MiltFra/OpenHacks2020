@@ -1,6 +1,5 @@
-package EnigmaVisualisation;
 
-public class Rotor implements Encryptor {
+public class Rotor {
     public static int MAP_LENGTH = 26;
     private Letter position;
     private Mapping mapping;
@@ -26,10 +25,14 @@ public class Rotor implements Encryptor {
         if (this.step_on[this.step_count.value]) {
             this.step();
         }
-        return this.mapping.forward(this.position, in);
+        return this.mapping.forwardPos(this.position, in);
     }
 
     public Letter backward(Letter in) {
-        return this.mapping.backward(this.position, in);
+        return this.mapping.backwardPos(this.position, in);
+    }
+
+    public Letter getPosition() {
+        return this.position;
     }
 }

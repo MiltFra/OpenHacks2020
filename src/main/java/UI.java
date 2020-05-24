@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 import org.w3c.dom.xpath.XPathResult;
 
 import javax.swing.*;

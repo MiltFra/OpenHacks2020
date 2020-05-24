@@ -1,5 +1,3 @@
-package EnigmaVisualisation;
-
 public class Mapping {
     public static int SIZE = 26;
     private final Letter[] fw_map = new Letter[SIZE];
@@ -27,11 +25,26 @@ public class Mapping {
         }
     }
 
-    public Letter forward(Letter position, Letter in) {
+    public Letter forwardPos(Letter position, Letter in) {
         return this.fw_map[in.shift(position).value].unshift(position);
     }
 
-    public Letter backward(Letter position, Letter in) {
+    public Letter backwardPos(Letter position, Letter in) {
         return this.bw_map[in.shift(position).value].unshift(position);
+    }
+
+    public Letter forward(Letter in) {
+        return this.fw_map[in.value];
+    }
+
+    public Letter backward(Letter in) {
+        return this.bw_map[in.value];
+    }
+
+    public static Mapping fromString(String str) {
+        if (str.length() != SIZE) {
+            throw new IllegalArgumentException();
+        }
+        return new Mapping(Letter.arrayFromString(str));
     }
 }
