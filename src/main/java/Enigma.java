@@ -1,40 +1,50 @@
 public class Enigma {
-    private Rotor[] rotors;
-    private Mapping reflector;
-    private Mapping translator;
+  private Rotor[] rotors;
+  private Mapping reflector;
+  private Mapping translator;
 
-    public Enigma(Rotor[] rotors, Mapping translator, Mapping reflector) {
-        this.rotors = rotors;
-        this.reflector = reflector;
-        this.translator = translator;
-    }
+  public Enigma(Rotor[] rotors, Mapping translator, Mapping reflector) {
+    this.rotors = rotors;
+    this.reflector = reflector;
+    this.translator = translator;
+  }
 
-    public Letter process(Letter in) {
-        in = this.translator.forward(in);
-        for (int i = 0; i < this.rotors.length; i++) {
-            in = this.rotors[i].forward(in);
-        }
-        in = this.reflector.forward(in);
-        for (int i = this.rotors.length; i > 1; i--) {
-            in = this.rotors[i-1].backward(in);
-        }
-        in = this.translator.forward(in);
-        return in;
+  public Letter process(Letter in) {
+    in = this.translator.forward(in);
+    for (int i = 0; i < this.rotors.length; i++) {
+      in = this.rotors[i].forward(in);
     }
+    in = this.reflector.forward(in);
+    for (int i = this.rotors.length; i > 1; i--) {
+      in = this.rotors[i - 1].backward(in);
+    }
+    in = this.translator.forward(in);
+    return in;
+  }
 
-    public Letter[] getTopPositions() {
-        var positions = new Letter[this.rotors.length];
-        for (int i = 0; i < positions.length; i++) {
-            positions[i] = this.rotors[i].getPosition();
-        }
-        return positions;
+  public Letter[] getTopPositions() {
+    var positions = new Letter[this.rotors.length];
+    for (int i = 0; i < positions.length; i++) {
+      positions[i] = this.rotors[i].getPosition();
     }
+    return positions;
+  }
 
-    public String processString(String in) {
-        var letters = Letter.arrayFromString(in);
-        for (int i = 0; i < letters.length; i++) {
-            letters[i] = this.process(letters[i]);
-        }
-        return Letter.arrayToString(letters);
+  public String processString(String in) {
+    var letters = Letter.arrayFromString(in);
+    for (int i = 0; i < letters.length; i++) {
+      letters[i] = this.process(letters[i]);
     }
+    return Letter.arrayToString(letters);
+  }
+
+  public Mapping[] getMappings() {
+    var mappings = new Mapping[2 + this.rotors.length];
+    mappings[0] = this.translator;
+    for (int i = 0; i < this.rotors.length; i++) {
+      mappings[i + 1] = this.rotors[i].getMapping();
+    }
+    mappings[mappings.length - 1] = this.reflector;
+    return mappings;
+  }
 }

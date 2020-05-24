@@ -35,4 +35,8 @@ public class Rotor {
     public Letter getPosition() {
         return this.position;
     }
+
+    public Mapping getMapping() {
+        return this.mapping;
+    }
 }
