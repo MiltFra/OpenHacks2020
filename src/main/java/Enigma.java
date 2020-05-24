@@ -39,15 +39,15 @@ public class Enigma {
    * @return A single letter.
    */
   public Letter process(Letter in) {
-    in = this.translator.forward(in);
+    in = this.translator.process(in);
     for (int i = 0; i < this.rotors.length; i++) {
       in = this.rotors[i].forward(in);
     }
-    in = this.reflector.forward(in);
+    in = this.reflector.process(in);
     for (int i = this.rotors.length; i > 1; i--) {
       in = this.rotors[i - 1].backward(in);
     }
-    in = this.translator.forward(in);
+    in = this.translator.process(in);
     return in;
   }
 

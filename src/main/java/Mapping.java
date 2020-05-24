@@ -1,7 +1,6 @@
 public class Mapping {
   public static int SIZE = 26;
-  private final Letter[] fw_map = new Letter[SIZE];
-  private final Letter[] bw_map = new Letter[SIZE];
+  private final Letter[] map = new Letter[SIZE];
 
   public Mapping(Letter[] values) {
     if (values.length != SIZE) {
@@ -22,28 +21,19 @@ public class Mapping {
             "Given letter array does not map to every letter.");
       }
     }
-    System.arraycopy(values, 0, this.fw_map, 0, SIZE);
-    for (int i = 0; i < values.length; i++) {
-      this.bw_map[values[i].value] = new Letter(i);
-    }
+    System.arraycopy(values, 0, this.map, 0, SIZE);
   }
 
-  public Letter forwardPos(Letter position, Letter in) {
-    return this.fw_map[in.shift(position).value].unshift(position);
+  public Letter processPos(Letter position, Letter in) {
+    return this.map[in.shift(position).value].unshift(position);
   }
 
-  public Letter backwardPos(Letter position, Letter in) {
-    return this.bw_map[in.shift(position).value].unshift(position);
-  }
-
-  public Letter forward(Letter in) { return this.fw_map[in.value]; }
-
-  public Letter backward(Letter in) { return this.bw_map[in.value]; }
+  public Letter process(Letter in) { return this.map[in.value]; }
 
   public Letter[] toLetterArray() {
     var arr = new Letter[SIZE];
     for (int i = 0; i < SIZE; i++) {
-      arr[i] = this.fw_map[i];
+      arr[i] = this.map[i];
     }
     return arr;
   }

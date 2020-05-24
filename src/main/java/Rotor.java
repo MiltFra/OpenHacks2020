@@ -25,11 +25,11 @@ public class Rotor {
         if (this.step_on[this.step_count.value]) {
             this.step();
         }
-        return this.mapping.forwardPos(this.position, in);
+        return this.mapping.processPos(this.position, in);
     }
 
     public Letter backward(Letter in) {
-        return this.mapping.backwardPos(this.position, in);
+        return this.mapping.processPos(this.position, in);
     }
 
     public Letter getPosition() {
